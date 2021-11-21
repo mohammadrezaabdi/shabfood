@@ -1,7 +1,7 @@
 {
-  "host": "postgres",
+  "host": "dea595c0-2333-4f34-875e-bf6837f78928.hsvc.ir",
   "user": "postgres",
-  "port": 5432,
+  "port": 31746,
   "dbname": "shabfood",
-  "password": "123"
+  "password": "pgnuHBH2aJnPw0Z2dT654yRFTxf2IihE"
 }
