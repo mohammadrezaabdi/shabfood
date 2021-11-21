@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const server_addr = "http://shabfood.ir:80/api"
+const server_addr = "http://shabfood.darkube.app:80/api"
 
 export const getRestaurant = (restID) => {
     return axios
