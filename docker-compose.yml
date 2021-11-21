@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: 123
+    networks:
+      - network
+    volumes:
+      - psql-data:/var/lib/postgres/data
+  
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - network
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    networks:
+      - network
+    depends_on:
+      - postgres
+
+networks:
+  network:
+
+volumes:
+  psql-data:
