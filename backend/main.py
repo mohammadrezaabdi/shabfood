@@ -213,4 +213,4 @@ async def api_get_deliverer_current_order(deliverer_id: str = Depends(JWTBearer(
 
 
 if __name__ == "__main__":
-    os.system("uvicorn main:app --reload")
+    os.system("uvicorn main:app --host 0.0.0.0 --reload")
