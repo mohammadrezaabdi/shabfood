@@ -1,19 +1,11 @@
 import React from 'react'
 import { filter } from 'lodash';
-import { Icon } from '@iconify/react';
 import { sentenceCase } from 'change-case';
-import { useParams } from 'react-router-dom';
-import { useConfirm } from 'material-ui-confirm'
-import foodIcon from '@iconify/icons-dashicons/food';
-import plusCircleOutlined from '@iconify/icons-ant-design/plus-circle-outlined';
-import minusCircleOutlined from '@iconify/icons-ant-design/minus-circle-outlined'
 import {
   Card,
-  IconButton,
   Table,
   Stack,
   Avatar,
-  Button,
   TableRow,
   TableBody,
   TableCell,
@@ -29,9 +21,8 @@ import Scrollbar from '../../components/helpers/Scrollbar';
 import SearchNotFound from '../../components/helpers/SearchNotFound';
 import { CustomerDashboardListHead, CustomerDashboardListToolbar, } from '../components/CustomerDashboard';
 import { useAuth } from 'src/utils/useAuth';
-import { orderStateToColor, orderStateToStr, USER_TYPES } from 'src/utils/values';
+import { orderStateToColor, orderStateToStr } from 'src/utils/values';
 import { useNavigate } from 'react-router-dom';
-import ReactJson from 'react-json-view';
 
 // ----------------------------------------------------------------------
 
@@ -67,7 +58,7 @@ function applySortFilter(array, comparator, query) {
     return a[1] - b[1];
   });
   if (query) {
-    return filter(array, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+    return filter(array, (_user) => _user.restName.toLowerCase().indexOf(query.toLowerCase()) !== -1);
   }
   return stabilizedThis.map((el) => el[0]);
 }
@@ -77,7 +68,7 @@ function applySortFilter(array, comparator, query) {
 export default function CustomerDashboard() {
   const [orders, setOrders] = React.useState([])
   const [refreshKey, setRefreshKey] = React.useState(0)
-  const { authed } = useAuth({});
+  const { authed, logout } = useAuth({});
 
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -93,6 +84,7 @@ export default function CustomerDashboard() {
           restId: row?.restaurant?.id,
         }))))
         .catch(() => {
+          logout()
           navigate('/login', { replace: true });
         })
 
@@ -173,11 +165,7 @@ export default function CustomerDashboard() {
                             tabIndex={-1}
                             role="checkbox"
                           >
-                            <TableCell padding="checkbox">
-                              {/* <IconButton onClick={refreshKey} color='primary' disabled={status === 0}>
-                              <Icon icon={plusCircleOutlined} width={20} height={20} />
-                            </IconButton> */}
-                            </TableCell>
+                            <TableCell padding="checkbox"/>
                             <TableCell component="th" scope="row" padding="none">
                               <Stack direction="row" alignItems="center" spacing={2}>
                                 <Avatar alt={restName} src={"avatarUrl TODO"} />
@@ -230,7 +218,6 @@ export default function CustomerDashboard() {
           </Card>
         </Container>
       </Page>
-      {/* <ReactJson src={orders} /> */}
     </>
   );
 }

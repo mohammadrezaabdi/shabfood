@@ -1,12 +1,9 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom';
-// material
 import { styled } from '@mui/material/styles';
-import { Box, Card, Link, Container, Typography } from '@mui/material';
-// components
 import Page from '../components/helpers/Page';
-import { MHidden } from '../components/@material-extend';
+import { Link as RouterLink } from 'react-router-dom';
 import { RegisterForm } from '../components/authentication/register';
+import { Box, Card, Link, Container, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -40,15 +37,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
 export default function Register() {
   return (
     <RootStyle title="Register in Shabfood">
-      {/* <MHidden width="mdDown">
-        <SectionStyle>
-          <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-            Manage the job more effectively with Minimal
-          </Typography>
-          <img alt="register" src="/static/illustrations/illustration_register.png" />
-        </SectionStyle>
-      </MHidden> */}
-
       <Container>
         <ContentStyle>
           <Box sx={{ mb: 5 }}>
@@ -59,7 +47,6 @@ export default function Register() {
               Free forever. No credit card needed.
             </Typography>
           </Box>
-
 
           <RegisterForm />
 

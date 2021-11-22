@@ -74,7 +74,7 @@ export default function RestaurantsList() {
         setRestList(res.data.map(row => {
           return {
             name: row.name,
-            address: row.address_static || "-",
+            address: row.address || "-",
             id: row.id,
             // TODO add open or close status
             status: "open",
